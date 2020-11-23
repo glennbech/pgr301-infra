@@ -49,6 +49,9 @@ revision might contain more information.
 `
 
 
+Men image skal være deployet til Cloud Run:
+https://drive.google.com/file/d/1MqiKQRcaQe0_7I1WPqA3e9eNDQ1WFyiU/view?usp=sharing
+
 
 Får også denne feilen når jeg kjører terraform apply lokalt:
 
