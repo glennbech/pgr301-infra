@@ -39,45 +39,21 @@ Legg deretter navnet på bucket i provider.tf
 ##KOMMENTARER:
 
 Får denne feilen i travis:
+`Error: Error waiting to create Service: resource is in failed state "Ready:False", message: Service teardown complete.
+Releasing state lock. This may take a few moments...`
 
-`Error: Error waiting to create Service: resource is in failed state "Ready:False", 
-message: Cloud Run error: Container failed to start. Failed to start and then 
-listen on the port defined by the PORT environment variable. Logs for this 
-revision might contain more information. 
-    Logs URL:
-    1144https://console.cloud.google.com/logs/viewer?project=exam1pg301&resource=cloud_run_revision/service_name/cloudrun-srv/revision_name/cloudrun-srv-gzq5k&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22cloudrun-srv%22%0Aresource.labels.revision_name%3D%22cloudrun-srv-gzq5k%22
-`
+Og denne: 
 
-
-Men image skal være deployet til Cloud Run:
-https://drive.google.com/file/d/1MqiKQRcaQe0_7I1WPqA3e9eNDQ1WFyiU/view?usp=sharing
-
-
-Får også denne feilen når jeg kjører terraform apply lokalt:
-
-Error: Error waiting to create Service: resource is in failed state "Ready:False", message: Cloud Run error: Container failed to start. Failed to start and then listen on the port defined by the PORT environment variable. Logs for this revision might contain more information.
+`Error: Error waiting to create Service: resource is in failed state "Ready:False", message: Cloud Run error: Container failed to start. Failed to start and then listen on the port defined by the PORT environment variable. Logs for this revision might contain more information.
 
 Logs URL:
-https://console.cloud.google.com/logs/viewer?project=exam1pg301&resource=cloud_run_revision/service_name/cloudrun-srv/revision_name/cloudrun-srv-r79fx&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22cloudrun-srv%22%0Aresource.labels.revision_name%3D%22cloudrun-srv-r79fx%22
-Har ikke fått løst dette. Kompilert med java 11 og kjørt med java 8. Er nok noe med docker.
+https://console.cloud.google.com/logs/viewer?project=exam1pg301&resource=cloud_run_revision/service_name/cloudrun-srv/revision_name/cloudrun-srv-dpcnx&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22cloudrun-srv%22%0Aresource.labels.revision_name%3D%22cloudrun-srv-dpcnx%22
+`
+
+(Altså noen ganger den ene, og noen ganger den andre. Har ikke fått løst dem.)
+
+Men image skal være deployet til Cloud Run:
+https://drive.google.com/file/d/14r0aqN_YJYJhascZDNK_0IpTGTAQXAeM/view?usp=sharing
 
 
-`"Exception in thread "main" java.lang.UnsupportedClassVersionError: no/kristiania/exam/ExamApplication has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
-	at java.lang.ClassLoader.defineClass1(Native Method)
-	at java.lang.ClassLoader.defineClass(ClassLoader.java:763)
-	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
-	at java.net.URLClassLoader.defineClass(URLClassLoader.java:468)
-	at java.net.URLClassLoader.access$100(URLClassLoader.java:74)
-	at java.net.URLClassLoader$1.run(URLClassLoader.java:369)
-	at java.net.URLClassLoader$1.run(URLClassLoader.java:363)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.net.URLClassLoader.findClass(URLClassLoader.java:362)
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
-	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:151)
-	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
-	at java.lang.Class.forName0(Native Method)
-	at java.lang.Class.forName(Class.java:348)
-	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:46)
-	at org.springframework.boot.loader.Launcher.launch(Launcher.java:107)
-	at org.springframework.boot.loader.Launcher.launch(Launcher.java:58)
-	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:88)`
+
