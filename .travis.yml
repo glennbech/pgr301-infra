@@ -1,0 +1,34 @@
+language: bash
+services:
+  - docker
+env:
+  global:
+    - GCP_PROJECT_ID=exam1pg301
+    - tf_version=0.13.4
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    - secure: GtDigeVlyg+C7UQzR05RDwOR53plOXnz3cy68FMX80ujGfQiX6D0E/iI4ewtPpfWRYMxgvzBhcQWzJcuAL+7SBw/z6JfgnlyqfVKPSG9uZ0ZaOgBIDbhFSQLSNnAJkok2n2wClKFMJxZKtiIdTFkQZV1Av3ozfSjK859xjx2FP/TvIdwJzb+71Q//l3lSdfL0y/pmvGRky5bk9jYF7vYJLJeBAhSEWh7VKHMcJbRGl8bgPMYUhVWVXvz87eqc26WF9tkgkIBVaSx5fLSrX3krwFA03ISS8WelohBRp6Ls9+Aq+fJ3mIdlOkUyHXDTGiUcy1ZZfBpL8mp5pvYzxGwfxRzX86uGp2OOWU76BccWCkWGhNyQR3+aYXLpI/IsY4Nh/6x1sgf0TAG3wKUhvZwtmbDdwqZxVkNW5UMNVfLRzK0lHdp44i+d5+V9Ea7wIOPHpyQ5vfcp6c7o6e1PXPCWXEQlvh6QuMEQAK5/pud1Sp8+Qec6tQnhYPtAAkj2Me1lHRgMXsN+MlueQijvRYGwjvjXUraNfra5xDJt+1tcw4YezMN7/DgCVbN8aoY2c8Z82KFrzpq+kPydcO2rVVmF54kzMBiybg5qz6wRGx6i08qxCZ/p/bpsVM0g3kk1xBPFmzPnhyK6c4A/g1p5mgLYJhtw7luoKcsug95/Qr2Fv0=
+    - secure: YPva8k47RiR7xaIrbfiJJjSpVqrEJmRf7lYBDxrUkD/aKhvBd8mrx3MbS1zXMZr0sSzdMlNUc2KtHth/9XMCGzbKjcFXRGywqhMg9uw3b7El0zBviQ38Sb1iWB/AWYDus+3nBC6FBmIWiYo+DryVUNpEzguJBFQBXOJlu9Fkqob5D4le6oQoU32OqZ0hKei1zdFNmkR4Gt6rt1Kz8084HP78kWTiSmEwJfWEQvwJ8I53NMaPnjjVlN19NxbTriMmNdD6c7NxmTWl9pk7Uk2Bsjb0sctRzAzFjfrTgeL1SRpQg/bUMICCiPg4TW+fLdsV0IannpQUqWP5ahpGNKymHzPqiwhsbIQ6Et3fzZInVI2HoCM2q6CQBXAWljzsj5WkEUuMv5cXjnusz8vwCzJMdwawm0wKxkIhww1tZ1KTF1IFoVNoytc/7s0Z9wfHBFllqE/5nEwYTh8Ji9/Vjz4QQWVcMk5MKl5IEFYVIEaaGVjz8sPWdAew0lN+pHTICn9POrc1BJVuoG/+kh70OvLbUjwWyNXIV46rruIvIpIZA6D0yI3dB+HzjkGF2KUTyfbXI7dcXuCUqfDx/15sQk6Bx9ySkSy2aNs+/H4vVI+z5cdgAkbGCEUVqRtVJgEHhPn4Qo4SYI+pBGX47Xabn0xcikKh/g79f1ruZnHRaKbn2CM=
+branches:
+  only:
+    - main
+before_install:
+  - openssl aes-256-cbc -K $encrypted_06803aa82a44_key -iv $encrypted_06803aa82a44_iv-in exam1pg301.json.enc -out exam1pg301.json -d
+  - curl https://sdk.cloud.google.com | bash > /dev/null
+  - source "$HOME/google-cloud-sdk/path.bash.inc"
+  - gcloud auth activate-service-account --key-file=exam1pg301.json
+  - gcloud config set project "${GCP_PROJECT_ID}"
+  - export GOOGLE_APPLICATION_CREDENTIALS=./exam1pg301.json
+  - wget https://releases.hashicorp.com/terraform/"$tf_version"/terraform_"$tf_version"_linux_amd64.zip
+  - unzip terraform_"$tf_version"_linux_amd64.zip
+  - sudo mv terraform /usr/local/bin/
+  - rm terraform_"$tf_version"_linux_amd64.zip
+install: true
+#script:
+#  - |-
+#    set -ex;
+#    export TF_VAR_logz_token=$LOGZ_TOKEN
+#    export TF_VAR_logz_url=$LOGZ_URL
+#    terraform init
+#    terraform plan
+#    terraform apply --auto-approve
+#    terraform output
