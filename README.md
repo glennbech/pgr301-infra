@@ -42,6 +42,15 @@ Får denne feilen i travis:
 `Error: Error waiting to create Service: resource is in failed state "Ready:False", message: Service teardown complete.
 Releasing state lock. This may take a few moments...`
 
+Og denne: 
+
+`Error: Error waiting to create Service: resource is in failed state "Ready:False", message: Cloud Run error: Container failed to start. Failed to start and then listen on the port defined by the PORT environment variable. Logs for this revision might contain more information.
+
+Logs URL:
+https://console.cloud.google.com/logs/viewer?project=exam1pg301&resource=cloud_run_revision/service_name/cloudrun-srv/revision_name/cloudrun-srv-dpcnx&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22cloudrun-srv%22%0Aresource.labels.revision_name%3D%22cloudrun-srv-dpcnx%22
+`
+
+(Altså noen ganger den ene, og noen ganger den andre. Har ikke fått løst dem.)
 
 Men image skal være deployet til Cloud Run:
 https://drive.google.com/file/d/14r0aqN_YJYJhascZDNK_0IpTGTAQXAeM/view?usp=sharing
