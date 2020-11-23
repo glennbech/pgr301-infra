@@ -35,11 +35,21 @@ Legg deretter navnet på bucket i provider.tf
 
 ##### --> push til master
 
+
 ##KOMMENTARER:
 
 Får denne feilen i travis:
- Error when reading or editing CloudRunService "locations/us-central1/namespaces/exam1pg301/services/cloudrun-srv": googleapi: Error 403: The caller does not have permission
- Selv om service account skal være konfigurert riktig.
+
+`Error: Error waiting to create Service: resource is in failed state "Ready:False", 
+message: Cloud Run error: Container failed to start. Failed to start and then 
+listen on the port defined by the PORT environment variable. Logs for this 
+revision might contain more information. 
+    Logs URL:
+    1144https://console.cloud.google.com/logs/viewer?project=exam1pg301&resource=cloud_run_revision/service_name/cloudrun-srv/revision_name/cloudrun-srv-gzq5k&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22cloudrun-srv%22%0Aresource.labels.revision_name%3D%22cloudrun-srv-gzq5k%22
+`
+
+
+
 
 
 Får også denne feilen når jeg kjører terraform apply lokalt:
